@@ -1,0 +1,7 @@
+__pycache__
+.venv
+.vvenv
+dust
+temp
+
+ACCEPTED_CLASSES.png
