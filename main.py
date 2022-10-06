@@ -85,7 +85,7 @@ class pre_processing():
             if m.distance < 0.8 * n.distance: #0.8 = a value suggested by David G. Lowe.
                 good_draw.append([m])
                 good_without_list.append(m)
-
+        
         # Extract location of good matches
         points1 = np.zeros((len(good_without_list), 2), dtype=np.float32)
         points2 = np.zeros((len(good_without_list), 2), dtype=np.float32)
@@ -103,7 +103,7 @@ class pre_processing():
         whiteReg = cv2.warpPerspective(white_img2, h, (width, height))
         blank_pixels_mask = np.any(whiteReg != [255, 255, 255], axis=-1)
         im2Reg = cv2.warpPerspective(img2, h, (width, height))
-
+        
         return im2Reg, blank_pixels_mask
 
     def _get_averaged_images(self, img, kernels):
@@ -214,10 +214,6 @@ class pre_processing():
             image2_registered = self.light_diff_elimination(image_1, image2_registered)
         
         return image_1, image2_registered, new_shape
-    
-    
-    
-    
 
 class cluster():
     input_path = ""
@@ -320,6 +316,7 @@ class cluster():
         diff_image = cv2.absdiff(image1, image2)
         diff_image = color.rgb2gray(diff_image)
         diff_image = np.pad(diff_image,((window_size // 2, window_size // 2), (window_size // 2, window_size // 2)), 'constant')  # default is 0
+        
         for i in range(image1.shape[0]):
             for j in range(image1.shape[1]):
                 descriptors[i,j,:] =diff_image[i:i+window_size,j:j+window_size].ravel()
@@ -423,10 +420,14 @@ def main(input_path,reference_path,n,window_size, pca_dim_gray, pca_dim_rgb,
     
 
     
-
-
 if __name__ == '__main__':
-
+    with open('pre_processing.pkl','wb') as f:
+        dill.dump(pre_processing,f)
+        
+    with open('cluster.pkl','wb') as f:
+        dill.dump(cluster,f)
+        
+        
     # with open('img_comparison.pkl','wb') as f:
     #     dill.dump(main,f)
     
@@ -446,4 +447,4 @@ if __name__ == '__main__':
          int(pca_dim_gray), int(pca_dim_rgb), bool(lighting_fix), bool(use_homography),
          float(resize_factor))
     
-    cv2.imwrite('ACCEPTED_CLASSES'+'.png', result)
+    cv2.imwrite('ACCEPTED_CLASSES1'+'.png', result)
