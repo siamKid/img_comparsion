@@ -429,7 +429,7 @@ if __name__ == '__main__':
         
         
     
-    """ test code
+    
     input_path = "img/golden.jpg"
     reference_path = "img/diff1.jpg"
     n=15
@@ -447,4 +447,4 @@ if __name__ == '__main__':
          float(resize_factor))
     
     cv2.imwrite('ACCEPTED_CLASSES1'+'.png', result)
-    """
+    
