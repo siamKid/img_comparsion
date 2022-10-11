@@ -251,8 +251,7 @@ class cluster():
         number_of_clusters = len(set(clustering.labels_))
         if number_of_clusters == 1:
             print("No significant changes are detected.")
-            exit(0)
-        
+            
         classes = [[] for i in range(number_of_clusters)]
         centers = [0 for i in range(number_of_clusters)]
         for i in range(len(MSE_array)):
@@ -430,21 +429,21 @@ if __name__ == '__main__':
         
     
     
-    input_path = "img/golden.jpg"
-    reference_path = "img/diff1.jpg"
-    n=15
-    window_size = 5
-    pca_dim_gray = 3
-    pca_dim_rgb = 9
+    # input_path = "img/golden.jpg"
+    # reference_path = "img/diff1.jpg"
+    # n=15
+    # window_size = 5
+    # pca_dim_gray = 3
+    # pca_dim_rgb = 9
     
-    lighting_fix = True
-    use_homography = True
-    resize_factor = float(1)
+    # lighting_fix = True
+    # use_homography = True
+    # resize_factor = float(1)
     
     
-    result = main(input_path, reference_path, int(n), int(window_size),
-         int(pca_dim_gray), int(pca_dim_rgb), bool(lighting_fix), bool(use_homography),
-         float(resize_factor))
+    # result = main(input_path, reference_path, int(n), int(window_size),
+    #      int(pca_dim_gray), int(pca_dim_rgb), bool(lighting_fix), bool(use_homography),
+    #      float(resize_factor))
     
-    cv2.imwrite('ACCEPTED_CLASSES1'+'.png', result)
+    # cv2.imwrite('ACCEPTED_CLASSES1'+'.png', result)
     
