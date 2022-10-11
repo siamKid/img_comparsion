@@ -192,8 +192,10 @@ class pre_processing():
     
     def processing(self):
         #read the inputs
-        image_1 = cv2.imread(self.input_path, 1)
-        image_2 = cv2.imread(self.reference_path, 1)
+        # image_1 = cv2.imread(self.input_path, 1)
+        # image_2 = cv2.imread(self.reference_path, 1)
+        image_1 = self.input_path
+        image_2 = self.reference_path
         
         #we need the images to be the same size. resize_factor is for increasing or decreasing further the images
         new_shape = (int(self.resize_factor*0.5*(image_1.shape[1]+image_2.shape[1])), int(self.resize_factor*0.5*(image_1.shape[0]+image_2.shape[0])))
@@ -385,7 +387,8 @@ class cluster():
             for j in range(clustering_map.shape[1]):
                 clustering[int(clustering_map[i,j])].append([i,j])
 
-        input_image = cv2.imread(self.input_path)
+        #input_image = cv2.imread(self.input_path)
+        input_image = self.input_path
         input_image = cv2.resize(input_image, self.new_shape, interpolation=cv2.INTER_AREA)
         b_channel, g_channel, r_channel = cv2.split(input_image)
         alpha_channel = np.ones(b_channel.shape, dtype=b_channel.dtype) * 255

@@ -43,8 +43,8 @@ def main(input_path,reference_path,n,window_size, pca_dim_gray, pca_dim_rgb,
 
     
 if __name__ == '__main__':
-    input_path = "img/golden.jpg"
-    reference_path = "img/diff1.jpg"
+    #input_path = "img/golden.jpg"
+    #reference_path = "img/diff1.jpg"
     n=10
     window_size = 5
     pca_dim_gray = 3
@@ -68,12 +68,14 @@ if __name__ == '__main__':
         golden_img = st.file_uploader('Golden img', type=['jpg','png'],key=200)
         if golden_img is not None:
             golden_img = Image.open(golden_img)
+            input_path=cv2.cvtColor(np.array(golden_img)  , cv2.COLOR_RGB2BGR)
             label1 = "Golden"
             
     with col2:
         reference_img = st.file_uploader('Reference img:', type=['jpg','png'],key=201)
         if reference_img is not None:
             reference_img = Image.open(reference_img)
+            reference_path=cv2.cvtColor(np.array(reference_img)  , cv2.COLOR_RGB2BGR)
             
     
     if golden_img is not None and reference_img is not None:
